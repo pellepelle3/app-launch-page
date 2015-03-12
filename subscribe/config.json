@@ -1,0 +1,12 @@
+{
+  "api": {
+    "mailchimp": {
+      "token": "XXXXX",
+      "lists": {
+        "demo": "XXXXX",
+        "newsletter": "XXXXX",
+        "local": "XXXXX"
+      }
+    }
+  }
+}
