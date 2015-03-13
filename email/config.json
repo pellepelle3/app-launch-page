@@ -1,0 +1,8 @@
+{
+	"api": {
+		"sendgrid": {
+			"apiUser": "xxx",
+			"apiKey": "xxx"
+		}
+	}
+}
