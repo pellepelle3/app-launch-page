@@ -1,5 +1,5 @@
 var express = require('express')
-  , discover = require('./tools/discover')
+  , lsq = require('lsq')
   , http = require('http')
   , path = require('path')
   , logger = require('morgan')
@@ -12,22 +12,26 @@ var express = require('express')
   , getReportingInfo = require('./tools/reporting')
   , report = require('./tools').report
 
-discover.init.then(function(){
+lsq.config.get().then(function(config){
   app
   .set('port', process.env.PORT || 3000)
-  .use(logger('dev'))
+  
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride('_method'))
   .use(getReportingInfo(report))
   .use('/api/v1/',require('./api/v1'))
 
-
+//.use(logger('dev'))
   app.get('/', function(req, res){
     res.send('hello world')
   })
 
-  console.log(discover.config)
+  app.get('/health',function(req,res){
+    res.send('ok')
+  })
+
+  console.log(config)
 
   app.listen(app.get('port'),function(){
     console.log("Express server listening on port " + app.get('port'))

@@ -13,19 +13,20 @@ var express = require('express')
 
 app
 .set('port', process.env.PORT || 3000)
-.use(logger('dev'))
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: true }))
 .use(methodOverride('_method'))
 .use(getReportingInfo(report))
 .use('/api/v1/',require('./api/v1'))
 
-
+//.use(logger('dev'))
 app.get('/', function(req, res){
   res.send('hello world')
 })
 
-
+app.get('/health',function(req,res){
+  res.send('ok')
+})
 
 app.listen(app.get('port'))
 console.log("Express server listening on port " + app.get('port'))

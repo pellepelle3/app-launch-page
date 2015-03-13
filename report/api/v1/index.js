@@ -1,9 +1,15 @@
 var express = require('express')
   , api = express.Router()
   , request = require('request')
-  , config = require('../../config.json')
   , Keen    = require('keen.io')
-  , keenClient  = Keen.configure(config.api.keenio.config)
+  , lsq = require('lsq')
+  , keenClient
+  , config
+
+lsq.config.get().then(function(c){
+  config = c
+  keenClient  = Keen.configure(c.api.keenio.config)
+})
 
 api.get('/', function(req, res) {
   res.send('Hello from APIv1 root route.')

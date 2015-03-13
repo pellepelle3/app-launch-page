@@ -11,6 +11,7 @@
     "method-override": "^2.3.1",
     "morgan": "^1.5.1",
     "on-finished": "^2.2.0",
+    "lsq": "0.0.3",
     "request": "^2.53.0"
   },
   "devDependencies": {},

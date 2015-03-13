@@ -8,6 +8,7 @@
     "express": "3.1.0",
     "jade": "0.28.1",
     "less-middleware": "^2.0.1",
+    "lsq": "0.0.3",
     "request": "^2.53.0"
   },
   "scripts": {

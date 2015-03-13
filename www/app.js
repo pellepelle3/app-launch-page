@@ -8,6 +8,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , request = require('request')
+  , lsq = require('lsq')
 
 
 var app = express();
@@ -18,7 +19,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(require('less-middleware')(__dirname + '/public'));
-  app.use(express.logger('dev'));
+  //app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -36,14 +37,20 @@ app.get('/', function(req, res){
 });
 
 app.post('/api/v1/subscribe',function(req,res){
- request.post('http://localhost:3001/api/v1/demo/subscribe'
-      ,{json:req.body}
-      , function (error, response, body) {
-        if(error) console.error(error)
-        res.send(body)
-      })
+  lsq.services.get('subscribe')
+    .then(function(service){
+     request.post('http://'+service+'/api/v1/demo/subscribe'
+          ,{json:req.body}
+          , function (error, response, body) {
+            if(error) console.error('can not reach subscribe service')
+            res.send(body)
+          })
+   })
 })
 
+app.get('/health',function(req,res){
+  res.send('ok')
+})
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
