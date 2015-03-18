@@ -11,7 +11,7 @@ Subscribe Service (Mailchimp)
 APIs
 ---
 
-### POST: /demo/subscribe
+### POST: /api/v1/demo/subscribe
 
 Payload:
 ```json
