@@ -13,7 +13,8 @@
     "on-finished": "^2.2.0",
     "promise": "^6.1.0",
     "request": "^2.53.0",
-    "sendgrid": "^1.6.0"
+    "sendgrid": "^1.6.0",
+    "marked":"^0.0.3"
   },
   "devDependencies": {},
   "scripts": {
