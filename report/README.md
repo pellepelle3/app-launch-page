@@ -1,4 +1,4 @@
-Email Service (Sendgrid)
+Report Service (Keen.io)
 ===
 
 - Apis
@@ -11,7 +11,7 @@ Email Service (Sendgrid)
 APIs
 ---
 
-### POST: /subscribe/thankyou
+### POST: /api/v1/add/subscriber/demo
 
 Payload:
 ```json
@@ -24,30 +24,20 @@ Response Success:
 Http Code 200
 ```json
 {
-  "result":"sent thank you email to example@mail.com"
-}
-```
-
-Response Error:
-Http Code 422
-```json
-{
-  "err":{error object}
-  "result":"Problem with sending email"
+  "result":"success"
 }
 ```
 
 Setup
 ---
 
-If you do don't have a [sendgrid account](https://sendgrid.com)
+If you do don't have a [Keen.io account](https://keen.io)
 
 
-Look up [Sendgrid-nodejs](https://github.com/sendgrid/sendgrid-nodejs#usage) npm info
+Look up [keen.io](https://www.npmjs.com/package/keen.io) npm info
 
-apiUser = Login user to sendgrid
-apiKey = Login password to sendgrid
-
+projectId = is listed once you open your project
+keys = click on show api keys on project page
 
 Config
 ---
@@ -58,20 +48,24 @@ Go to the config tab and set it with this info
 
 {
   "api": {
-    "sendgrid": {
-       "apiUser": "xxx", //Login user to sendgrid
-       "apiKey": "xxx" //Login password to sendgrid
-     }
+    "keenio": {
+      "config": {
+        "projectId": "xxxx",
+        "writeKey" : "xxxx",
+        "readKey": "xxx"
+      }
+    }
   }
 }
+
 
 
 ```
 
 Resources
 ---
-- [Sendgrid Account](https://sendgrid.com)
-- [Sendgrid-nodejs](https://github.com/sendgrid/sendgrid-nodejs#usage)
+- [Keen.io account](https://keen.io)
+- [keen.io](https://www.npmjs.com/package/keen.io)
 - [Node Micro](https://github.com/lsqio/node-micro)
 - [Service Discovery and Config](https://github.com/lsqio/lsq)
 - [LSQ.io Docs](https://github.com/lsqio/docs)
