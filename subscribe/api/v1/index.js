@@ -11,10 +11,6 @@ lsq.config.get().then(function(c){
   mc = new mcapi.Mailchimp(config.api.mailchimp.token)
 })
 
-api.get('/', function(req, res) {
-  res.send('Hello from APIv1 root route.')
-})
-
 api.post('/demo/subscribe',function(req,res){
   
   if(!req.body.email || !req.body.source ){

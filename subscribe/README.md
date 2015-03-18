@@ -1,4 +1,4 @@
-Email Service (Sendgrid)
+Subscribe Service (Mailchimp)
 ===
 
 - Apis
@@ -11,12 +11,13 @@ Email Service (Sendgrid)
 APIs
 ---
 
-### POST: /subscribe/thankyou
+### POST: /demo/subscribe
 
 Payload:
 ```json
 {
-  "email" : "example@mail.com"
+  "email" : "example@mail.com",
+  "source":"web"
 }
 ```
 
@@ -24,30 +25,44 @@ Response Success:
 Http Code 200
 ```json
 {
-  "result":"sent thank you email to example@mail.com"
+  "result":"Thanks for signing up! We'll keep you up to date."
+}
+```
+Already Signed up
+Http Code 214
+```json
+{
+  "result":"Thanks for signing up! We'll keep you up to date."
 }
 ```
 
+
 Response Error:
-Http Code 422
+Missing Email or Source
+Http Code 409
 ```json
 {
-  "err":{error object}
-  "result":"Problem with sending email"
+ "result":'Please make sure your email has been entered correctly.'
+ ,"error":true
 }
 ```
+
+
 
 Setup
 ---
 
-If you do don't have a [sendgrid account](https://sendgrid.com)
+If you do don't have a [Mailchimp account](https://mailchimp.com)
 
 
-Look up [Sendgrid-nodejs](https://github.com/sendgrid/sendgrid-nodejs#usage) npm info
+Look up [mailchimp-api](https://www.npmjs.com/package/mailchimp-api) npm info
 
-apiUser = Login user to sendgrid
-apiKey = Login password to sendgrid
+Once you login you can get the api key [here](https://us7.admin.mailchimp.com/account/api/) 
 
+To get the list id go to [lists](https://us7.admin.mailchimp.com/account/api/) 
+click on the arrow down \/ 
+then click settings
+on the bottom of the page you will see the the id for the list
 
 Config
 ---
@@ -58,10 +73,12 @@ Go to the config tab and set it with this info
 
 {
   "api": {
-    "sendgrid": {
-       "apiUser": "xxx", //Login user to sendgrid
-       "apiKey": "xxx" //Login password to sendgrid
-     }
+    "mailchimp": {
+      "token": "xxx",
+      "lists": {
+        "demo": "xxx",
+      }
+    }
   }
 }
 
@@ -70,8 +87,8 @@ Go to the config tab and set it with this info
 
 Resources
 ---
-- [Sendgrid Account](https://sendgrid.com)
-- [Sendgrid-nodejs](https://github.com/sendgrid/sendgrid-nodejs#usage)
+- [Mailchimp account](https://mailchimp.com)
+- [mailchimp-api](https://www.npmjs.com/package/mailchimp-api) npm info
 - [Node Micro](https://github.com/lsqio/node-micro)
 - [Service Discovery and Config](https://github.com/lsqio/lsq)
 - [LSQ.io Docs](https://github.com/lsqio/docs)
